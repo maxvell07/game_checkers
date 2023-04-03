@@ -230,9 +230,9 @@ public class HelloApplication extends Application {
             int finalI = i;
             arr[i].setOnMouseClicked((MouseEvent event) -> {
                 System.out.println("mouseClicked");
-                if (arr[finalI].getFill() == Color.GREEN) controller.Move(rec[finalI], arr);
+                if (arr[finalI].getFill() == Color.GREEN) controller.Move(rec[finalI], arr, chips, rec);
             });
-            if (rec[i].chip != null) {
+            if (rec[i].hasChip()) {
                 rec[i].chip.circle.setOnMouseClicked((MouseEvent event) -> {
                     System.out.println("mouseClicked");
                     if ((controller.turn == Turn.WHITE && rec[finalI].chip.circle.getFill() == Color.WHITE) ||

@@ -12,6 +12,7 @@ public class Rect {
     public Rect(Chip[] chip, Rectangle rectangle) {
         this.rectangle=rectangle;
     }
+    public boolean hasChip() {return this.chip != null;}
 
     public void setChip(Chip chip) {
         this.chip = chip;
