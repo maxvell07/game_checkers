@@ -282,6 +282,7 @@ public class HelloController {
                     rec[i].chip.circle.setCenterY(10);
                     rec[i].removeChip();// не использовать chips[] пока хз надо удалить фишку
                     canEatForBlack = false;
+                    a=true;
                     break;
                 }
                 if (rec[i].hasChip() && (selectedChip.getX() - X < 0) && (selectedChip.getY() - Y < 0) && (rec[i].chip.getX() == X - 55
@@ -291,6 +292,7 @@ public class HelloController {
                     rec[i].chip.circle.setCenterY(10);
                     rec[i].removeChip();// не использовать chips[] пока хз надо удалить фишку
                     canEatForBlack = false;
+                    a=true;
                     break;
                 }
                 if (rec[i].hasChip() && (selectedChip.getX() - X > 0) && (selectedChip.getY() - Y > 0) && (rec[i].chip.getX() == X + 55
@@ -300,6 +302,7 @@ public class HelloController {
                     rec[i].chip.circle.setCenterY(10);
                     rec[i].removeChip();// не использовать chips[] пока хз надо удалить фишку
                     canEatForBlack = false;
+                    a=true;
                     break;
                 }
                 if (rec[i].hasChip() && (selectedChip.getX() - X < 0) && (selectedChip.getY() - Y > 0) && (rec[i].chip.getX() == X - 55
@@ -309,81 +312,11 @@ public class HelloController {
                     rec[i].chip.circle.setCenterY(10);
                     rec[i].removeChip();// не использовать chips[] пока хз надо удалить фишку
                     canEatForBlack = false;
+                    a=true;
                     break;
                 }
             }
         }
-        /**if (selectedChip.circle.getFill()==Color.WHITE && (selectedChip.getX()+55 <=460) && (selectedChip.getY()+55 <=460)){
-         for (int i=0;i<rec.length;i++){
-         if (rec[i].hasChip() && rec[i].chip.circle.getFill()==Color.GRAY
-         && (rec[i].chip.getX()== selectedChip.getX()+55 && rec[i].chip.getY() == selectedChip.getY()+55)){
-         canEatForBlack=true;
-         break;
-         }}
-         for (int i=0;i<rec.length;i++){
-         if (rec[i].hasChip() && (rec[i].chip.getX()== selectedChip.getX()-55 && rec[i].chip.getY() == selectedChip.getY()-55) &&
-         selectedChip.getX()-55>=75){
-         canEatForBlack=false;
-         break;}
-         if (rec[i].hasChip() && (rec[i].chip.getX()== selectedChip.getX()-110 && rec[i].chip.getY() == selectedChip.getY()-110)){
-         canEatForBlack=false;
-         break;
-         }
-         }
-         }
-         if (selectedChip.circle.getFill()==Color.WHITE && (selectedChip.getX()-55>=75) && (selectedChip.getY()+55 <=460)){
-         for (int i=0;i<rec.length;i++){
-         if (rec[i].hasChip() && rec[i].chip.circle.getFill()==Color.GRAY
-         && (rec[i].chip.getX()== selectedChip.getX()-55 && rec[i].chip.getY() == selectedChip.getY()+55)){
-         canEatForBlack=true;
-         }}
-         for (int i=0;i<rec.length;i++){
-         if (rec[i].hasChip() && (rec[i].chip.getX()== selectedChip.getX()+55 && rec[i].chip.getY() == selectedChip.getY()-55) &&
-         selectedChip.getX()+55<=460){
-         canEatForBlack=false;
-         break;
-         }
-         if (rec[i].hasChip() && (rec[i].chip.getX()== selectedChip.getX()-110 && rec[i].chip.getY() == selectedChip.getY()+110)){
-         canEatForBlack=false;
-         break;
-         }}
-         }
-         if (selectedChip.circle.getFill()==Color.WHITE && (selectedChip.getX()-55>=75) && (selectedChip.getY()-55 >=75)){
-         for (int i=0;i<rec.length;i++){
-         if (rec[i].hasChip() && rec[i].chip.circle.getFill()==Color.GRAY
-         && (rec[i].chip.getX()== selectedChip.getX()-55 && rec[i].chip.getY() == selectedChip.getY()-55)){
-         canEatForBlack=true;
-
-         }}
-         for (int i=0;i<rec.length;i++){
-         if (rec[i].hasChip() && (rec[i].chip.getX()== selectedChip.getX()+55 && rec[i].chip.getY() == selectedChip.getY()+55)&&
-         selectedChip.getX()+55<=460){
-         canEatForBlack=false;
-         break;
-         }
-         if (rec[i].hasChip() && (rec[i].chip.getX()== selectedChip.getX()-110 && rec[i].chip.getY() == selectedChip.getY()-110)){
-         canEatForBlack=false;
-         break;
-         }}
-         }
-         if (selectedChip.circle.getFill()==Color.WHITE && (selectedChip.getX()+55<=460) && (selectedChip.getY()-55 >=75)){
-         for (int i=0;i<rec.length;i++){
-         if (rec[i].hasChip() && rec[i].chip.circle.getFill()==Color.GRAY
-         && (rec[i].chip.getX()== selectedChip.getX()+55 && rec[i].chip.getY() == selectedChip.getY()-55)){
-         canEatForBlack=true;
-         }}
-         for (int i=0;i<rec.length;i++){
-         if (rec[i].hasChip() && (rec[i].chip.getX()== selectedChip.getX()-55 && rec[i].chip.getY() == selectedChip.getY()+55)&&
-         selectedChip.getX()-55>=75){
-         canEatForBlack=false;
-         break;
-         }
-         if (rec[i].hasChip() && (rec[i].chip.getX()== selectedChip.getX()+110 && rec[i].chip.getY() == selectedChip.getY()-110)){
-         canEatForBlack=false;
-         break;
-         }}
-         }
-         }*/
         if (turn == Turn.BLACK && selectedChip.circle.getFill() == Color.GRAY) {
             for (int i = 0; i < rec.length; i++) {
                 if (rec[i].hasChip() && (selectedChip.getX() - X > 0) && (rec[i].chip.getX() == X + 55
@@ -393,6 +326,7 @@ public class HelloController {
                     rec[i].chip.circle.setCenterY(10);
                     rec[i].removeChip();// не использовать chips[] пока хз надо удалить фишку
                     canEatForWhite = false;
+                    a=true;
                     break;
                 }
                 if (rec[i].hasChip() && (selectedChip.getX() - X < 0) && (rec[i].chip.getX() == X - 55
@@ -402,6 +336,7 @@ public class HelloController {
                     rec[i].chip.circle.setCenterY(10);
                     rec[i].removeChip();// не использовать chips[] пока хз надо удалить фишку
                     canEatForWhite = false;
+                    a=true;
                     break;
                 }
                 if (rec[i].hasChip() && (selectedChip.getX() - X > 0) && (selectedChip.getY() - Y < 0) && (rec[i].chip.getX() == X + 55
@@ -411,6 +346,7 @@ public class HelloController {
                     rec[i].chip.circle.setCenterY(10);
                     rec[i].removeChip();// не использовать chips[] пока хз надо удалить фишку
                     canEatForWhite = false;
+                    a=true;
                     break;
                 }
                 if (rec[i].hasChip() && (selectedChip.getX() - X < 0) && (selectedChip.getY() - Y < 0) && (rec[i].chip.getX() == X - 55
@@ -420,68 +356,18 @@ public class HelloController {
                     rec[i].chip.circle.setCenterY(10);
                     rec[i].removeChip();// не использовать chips[] пока хз надо удалить фишку
                     canEatForWhite = false;
+                    a=true;
                     break;
                 }
             }
         }
-        /**
-         //после хода белых проверка могут ли черные укусить
-         if (selectedChip.circle.getFill()==Color.GRAY && (selectedChip.getX()+55 <=460) && (selectedChip.getY()+55 <=460)){
-         for (int i=0;i<rec.length;i++){
-         if ( rec[i].hasChip() && rec[i].chip.circle.getFill()==Color.WHITE
-         && (rec[i].chip.getX()== selectedChip.getX()+55 && rec[i].chip.getY() == selectedChip.getY()+55)){
-         canEatForWhite=true;
-         break;
-         }}
-         for (int i=0;i<rec.length;i++){
-         if (rec[i].hasChip() && (rec[i].chip.getX()== selectedChip.getX()-55 && rec[i].chip.getY() == selectedChip.getY()-55)){
-         canEatForWhite=false;
-         break;
-         }}
-         }
-         if (selectedChip.circle.getFill()==Color.GRAY && (selectedChip.getX()-55>=75) && (selectedChip.getY()+55 <=460)){
-         for (int i=0;i<rec.length;i++){
-         if (rec[i].hasChip() && rec[i].chip.circle.getFill()==Color.WHITE
-         && (rec[i].chip.getX()== selectedChip.getX()-55 && rec[i].chip.getY() == selectedChip.getY()+55)){
-         canEatForWhite=true;
 
-         }
-         if ( rec[i].hasChip() && (rec[i].chip.getX()== selectedChip.getX()+55 && rec[i].chip.getY() == selectedChip.getY()-55)){
-         canEatForWhite=false;
-         break;
-         }
-         }}
-         if ( selectedChip.circle.getFill()==Color.GRAY && (selectedChip.getX()-55>=75) && (selectedChip.getY()-55 >=75)){
-         for (int i=0;i<rec.length;i++){
-         if (rec[i].hasChip() && rec[i].chip.circle.getFill()==Color.WHITE
-         && (rec[i].chip.getX()== selectedChip.getX()-55 && rec[i].chip.getY() == selectedChip.getY()-55)){
-         canEatForWhite=true;
-         }}
-         for (int i=0;i<rec.length;i++){
-         if (rec[i].hasChip() && (rec[i].chip.getX()== selectedChip.getX()+55 && rec[i].chip.getY() == selectedChip.getY()+55)){
-         canEatForWhite=false;
-         break;
-         }}
-         }
-         if (selectedChip.circle.getFill()==Color.GRAY && (selectedChip.getX()+55<=460) && (selectedChip.getY()-55 >=75)){
-         for (int i=0;i<rec.length;i++){
-         if (rec[i].hasChip() && rec[i].chip.circle.getFill()==Color.WHITE
-         && (rec[i].chip.getX()== selectedChip.getX()+55 && rec[i].chip.getY() == selectedChip.getY()-55)){
-         canEatForWhite=true;
-         }}
-         for (int i=0;i<rec.length;i++){
-         if (rec[i].hasChip() && (rec[i].chip.getX()== selectedChip.getX()-55 && rec[i].chip.getY() == selectedChip.getY()+55)){
-         canEatForWhite=false;
-         break;
-         }}
-         }
-         } */
-        if (turn == Turn.WHITE ) {
-            if (findEatMoves(rec,White)){
+        if (turn == Turn.WHITE ) { // если можешь продолжать есть, то ход не меняется
+            if (findEatMoves(rec,White) && a){
                 System.out.println("continue");}
             else {turn=Turn.BLACK;}
         }else if (turn == Turn.BLACK) {
-            if (findEatMoves(rec,Black)){
+            if (findEatMoves(rec,Black) && a){
                 System.out.println("continue");} else {
                 turn =Turn.WHITE;
             }
