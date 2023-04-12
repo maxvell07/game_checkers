@@ -224,7 +224,7 @@ public class HelloApplication extends Application {
         stage.setTitle("Chip");
         stage.setScene(scene);
         stage.show();
-        stage.setAlwaysOnTop(true);
+        //stage.setAlwaysOnTop(true);
 
         for (int i = 0; i < 64; i++) { // обработчик нажатия на клетку
             int finalI = i;
