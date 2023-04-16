@@ -1,6 +1,7 @@
 package com.example.game_dem1;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -8,13 +9,16 @@ import javafx.scene.shape.Rectangle;
 import java.util.Map;
 
 public class HelloController {
-    public void initBoard(Rectangle[] rect) {
+    public void initBoard(Rectangle[] rect, Rect[] rec) {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if ((j % 2 + i % 2) % 2 == 0) {
                     rect[j + i * 8].setFill(Color.WHITE);
                 } else rect[j + i * 8].setFill(Color.BLACK);
             }
+            if (turn ==Turn.WHITE){
+                checkend(rec, White);
+            }else checkend(rec,Black);
         }
     }
 
@@ -29,7 +33,7 @@ public class HelloController {
     public boolean canEatForBlack = false;
 
     public void HilightPosMove(Chip cir, Chip[] chips, Rectangle[] rects, Map<Cord, Rectangle> map, Rect[] rect) {
-        initBoard(rects);
+        initBoard(rects, rect);
         int X = cir.getX();
         int Y = cir.getY();
         int Xld = 0;
@@ -54,10 +58,6 @@ public class HelloController {
             for (int i = 0; i < rect.length; i++) {
                 if (rect[i].hasChip() && (((X + 55) == rect[i].chip.getX() && (Y - 55) == rect[i].chip.getY()) && (cir.circle.getFill() == Color.WHITE))) {
                     rd = false; //ход по правой диаг на 1 клетку для белых (просто проверка есть ли фишка)
-                    //if (){
-                    //(X+110)!=chips[i].getX() && (Y - 110) != chips[i].getY()&&chips[i].circle.getFill()==Color.GRAY)
-                    //  rdEat=true;
-                    //rd =true;
                     indexremovechip = i;
                     //}
                     Xrd = X + 55;
@@ -65,9 +65,6 @@ public class HelloController {
                 }
                 if (rect[i].hasChip() && (((X - 55) == rect[i].chip.getX() && (Y - 55) == rect[i].chip.getY() && (cir.circle.getFill() == Color.WHITE)))) {
                     ld = false; //ход по левой диаг на 1 клетку для белых (просто проверка есть ли фишка )
-                    //if (((X-110)!=chips[i].getX() && (Y + 110) != chips[i].getY())&&chips[i].circle.getFill()==Color.GRAY){
-                    //  ldEat=true;
-                    //ld =true;
                     indexremovechip = i;
                     //}
                     Xld = X - 55;
@@ -356,22 +353,19 @@ public class HelloController {
         }
 
         if (turn == Turn.WHITE) { // если можешь продолжать есть, то ход не меняется
-            checkend(rec,White);
             if ((findEatMoves(rec, White) && a) && canCheckerEat(rec, rec[index])) {
                 System.out.println("continue");
             } else { //исправить // !!!
                 turn = Turn.BLACK;
             }
         } else if (turn == Turn.BLACK) {
-            checkend(rec,Black);
             if ((findEatMoves(rec, Black) && a) && canCheckerEat(rec, rec[index])) {
                 System.out.println("continue");
             } else {
                 turn = Turn.WHITE;
-                // checkend(rec,White);
             }
         }
-        initBoard(recs);
+        initBoard(recs,rec);
     }
 
     public boolean findEatMoves(Rect[] rec, String color) {//все ходы для съедения для нужного цвета
@@ -515,9 +509,9 @@ public class HelloController {
         if (color.equals("WHITE")) {
             for (int i = 0; i < rec.length; i++) {//1
                 if (rec[i].hasChip() && rec[i].chip.circle.getFill() == Color.WHITE) {
-                    if ((rec[i].chip.getX() - 110 >= 75) && (rec[i].chip.getY() - 110 >= 75)) {
+                    if ((rec[i].chip.getX() - 55 >= 75) && (rec[i].chip.getY() - 55 >= 75)) {
                         for (int j = 0; j < rec.length; j++) {// проверка съедения вверх влево для белых
-                            if (!rec[j].hasChip() && (rec[j].chip.getX() == rec[i].chip.getX() - 55 && rec[j].chip.getY() == rec[i].chip.getY() - 55)) {
+                            if (!rec[j].hasChip() && (rec[j].getX()+25 == rec[i].chip.getX() - 55 && rec[j].getY()+25 == rec[i].chip.getY() - 55)) {
                                 ceat = true;
                             }
                         }
@@ -526,7 +520,7 @@ public class HelloController {
 
                     if ((rec[i].chip.getX() + 55 <= 460) && (rec[i].chip.getY() - 55 >= 75)) {
                         for (int j = 0; j < rec.length; j++) {// проверка съедения вниз влево для белых
-                            if (!rec[j].hasChip() && (rec[j].chip.getX() == rec[i].chip.getX() + 55 && rec[j].chip.getY() == rec[i].chip.getY() - 55)) {
+                            if (!rec[j].hasChip() && (rec[j].getX()+25 == rec[i].chip.getX() + 55 && rec[j].getY()+25 == rec[i].chip.getY() - 55)) {
                                 ceat = true;
                             }
                         }
@@ -540,7 +534,7 @@ public class HelloController {
                     if ((rec[i].chip.getX() + 55 <= 460) && (rec[i].chip.getY() + 55 <= 460)) {
                         for (int j = 0; j < rec.length; j++) {// 2 // проверка можно ходить вниз вправо для черных
 
-                            if (!rec[j].hasChip() && ((rec[j].chip.getX() == rec[i].chip.getX() + 55) && (rec[j].chip.getY() == rec[i].chip.getY() + 55))) {
+                            if (!rec[j].hasChip() && ((rec[j].getX()+25 == rec[i].chip.getX() + 55) && (rec[j].getY()+25 == rec[i].chip.getY() + 55))) {
                                 ceat = true;
                             }
                         }
@@ -549,7 +543,7 @@ public class HelloController {
 
                     if ((rec[i].chip.getX() - 110 >= 75) && (rec[i].chip.getY() + 110 <= 460)) {
                         for (int j = 0; j < rec.length; j++) {// проверка съедения вниз влево для черных
-                            if (!rec[j].hasChip() && (rec[j].chip.getX() == rec[i].chip.getX() - 55 && rec[j].chip.getY() == rec[i].chip.getY() + 55)) {
+                            if (!rec[j].hasChip() && (rec[j].getX()+25 == rec[i].chip.getX() - 55 && rec[j].getY()+25 == rec[i].chip.getY() + 55)) {
                                 ceat = true;
                             }
                         }
@@ -562,12 +556,28 @@ public class HelloController {
     }
 
     public void checkend(Rect[] rects, String color) {
+        boolean hasowerchip=false;
         if (findEatMoves(rects, color)) {
             System.out.println("asa");
-        }
-        if (findMoves(rects, color)) {
+        }else if (findMoves(rects, color)) {
             System.out.println("lol");
-        } else System.out.println("ggf");
+        } else{ InfoAlert.showAlertWin();
+        System.exit(1);
+        }
+
+    for (int i=0;i< rects.length;i++){
+        if (color==White && rects[i].hasChip() && rects[i].chip.circle.getFill()==Color.WHITE){
+            hasowerchip=true;
+        }
+        if (color==Black && rects[i].hasChip() && rects[i].chip.circle.getFill()==Color.GRAY){
+            hasowerchip=true;
+        }
+    }
+    if (!hasowerchip){
+        InfoAlert.showAlertWin();
+        System.exit(1);
+    }
+
     }
 
     public boolean canCheckerEat(Rect[] rec, Rect rect) {
