@@ -19,7 +19,6 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Map<Cord, Rectangle> map = new HashMap<>();
-        Map<Cord, Circle> map2 = new HashMap<>();
         Cord[][] cords = new Cord[8][8];
         int stepX = 50;
         int stepY = 50;
@@ -213,12 +212,17 @@ public class HelloApplication extends Application {
         int count = 0;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                if (((j % 2 + i % 2) % 2 == 0) && ((i <= 2) || (i > 4))) {
+                if (((j % 2 + i % 2) % 2 == 1) && ((i <= 2) || (i > 4))) {
                     rec[j + i * 8].chip = chips[count];
                     count += 1;
                 }
             }
         }
+        /*for (int i=0;i<rec.length;i++){
+            if (rec[i].chip!=null){
+                rec[i].rectangle.setFill(Color.RED);
+            }
+        }*/
 
         Scene scene = new Scene(root, 500, 500, Color.DARKGOLDENROD);
         stage.setTitle("Chip");
@@ -229,16 +233,26 @@ public class HelloApplication extends Application {
         for (int i = 0; i < 64; i++) { // обработчик нажатия на клетку
             int finalI = i;
             arr[i].setOnMouseClicked((MouseEvent event) -> {
-                System.out.println("mouseClicked");
-                if (arr[finalI].getFill() == Color.GREEN) controller.Move(rec[finalI], arr, chips, rec);
+                if (arr[finalI].getFill() == Color.GREEN){
+                    System.out.println("arr "+arr[finalI].getX()+" "+arr[finalI].getY());
+                    System.out.println("rec "+rec[finalI].getX()+" "+rec[finalI].getY());
+                    controller.Move(rec[finalI], arr, rec);}
             });
             if (rec[i].hasChip()) {
-                rec[i].chip.circle.setOnMouseClicked((MouseEvent event) -> {
-                    System.out.println("mouseClicked");
-                    if ((controller.turn == Turn.WHITE && rec[finalI].chip.circle.getFill() == Color.WHITE) ||
-                    (controller.turn == Turn.BLACK && rec[finalI].chip.circle.getFill() == Color.GRAY)){
-                        controller.HilightPosMove(rec[finalI].chip, chips, arr, map,rec);
-                        controller.selectedChip = rec[finalI].chip;
+                Circle circle = rec[i].chip.circle;
+                Chip chip = rec[i].chip;
+                circle.setOnMouseClicked((MouseEvent event) -> {
+                    System.out.println("mouseClicked"+ chip.getX()+" "+chip.getY());
+                    if ((controller.turn == Turn.WHITE && circle.getFill() == Color.WHITE||circle.getFill() == Color.WHEAT) ||
+                    (controller.turn == Turn.BLACK && (circle.getFill() == Color.GRAY ||circle.getFill() == Color.CADETBLUE))){
+                       for (int t=0;t< rec.length;t++) {
+                           if (rec[t].hasChip() && rec[t].chip.circle==circle){
+                               controller.selectedChip=rec[t].chip; //передаю нужный селектед чип
+                           }
+                       }
+                        controller.HilightPosMove(controller.selectedChip, arr, map,rec);
+
+
                     }
                 });
             }
@@ -257,8 +271,8 @@ public class HelloApplication extends Application {
                 });
             }
         }
-    }
 
+    }
     public static void main(String[] args) {
         launch();
     }
