@@ -44,15 +44,15 @@ public class HelloApplication extends Application {
         Circle circ7 = new Circle(295, 130, 25, Color.GRAY);
         Circle circ8 = new Circle(405, 130, 25, Color.GRAY);
 
-        Circle circ9 = new Circle(130, 185, 25, Color.GRAY);
+        Circle circ9 = new Circle(130, 185, 25, Color.CADETBLUE);
         Circle circ10 = new Circle(240, 185, 25, Color.GRAY);
         Circle circ11 = new Circle(350, 185, 25, Color.GRAY);
-        Circle circ12 = new Circle(460, 185, 25, Color.GRAY);
+        Circle circ12 = new Circle(460, 185, 25, Color.CADETBLUE);
 //белые
-        Circle circ13 = new Circle(75, 350, 25, Color.WHITE);
+        Circle circ13 = new Circle(75, 350, 25, Color.WHEAT);
         Circle circ14 = new Circle(185, 350, 25, Color.WHITE);
         Circle circ15 = new Circle(295, 350, 25, Color.WHITE);
-        Circle circ16 = new Circle(405, 350, 25, Color.WHITE);
+        Circle circ16 = new Circle(405, 350, 25, Color.WHEAT);
 
         Circle circ17 = new Circle(130, 405, 25, Color.WHITE);
         Circle circ18 = new Circle(240, 405, 25, Color.WHITE);
@@ -203,7 +203,7 @@ public class HelloApplication extends Application {
         Chip[] chips = new Chip[24];
 
         for (int i = 0; i < 24; i++) { //создал объекты фишки
-            chips[i] = new Chip((int) CirArr[i].getCenterX(), (int) CirArr[i].getCenterY(), CirArr[i], false);
+            chips[i] = new Chip((int) CirArr[i].getCenterX(), (int) CirArr[i].getCenterY(), CirArr[i], true,false);
         }
         Rect rec[] = new Rect[64];
         for (int i = 0; i < arr.length; i++) {
@@ -234,15 +234,13 @@ public class HelloApplication extends Application {
             int finalI = i;
             arr[i].setOnMouseClicked((MouseEvent event) -> {
                 if (arr[finalI].getFill() == Color.GREEN){
-                    System.out.println("arr "+arr[finalI].getX()+" "+arr[finalI].getY());
-                    System.out.println("rec "+rec[finalI].getX()+" "+rec[finalI].getY());
                     controller.Move(rec[finalI], arr, rec);}
             });
             if (rec[i].hasChip()) {
                 Circle circle = rec[i].chip.circle;
                 Chip chip = rec[i].chip;
                 circle.setOnMouseClicked((MouseEvent event) -> {
-                    System.out.println("mouseClicked"+ chip.getX()+" "+chip.getY());
+                    System.out.println("XY"+ chip.getX()+" "+chip.getY());
                     if ((controller.turn == Turn.WHITE && circle.getFill() == Color.WHITE||circle.getFill() == Color.WHEAT) ||
                     (controller.turn == Turn.BLACK && (circle.getFill() == Color.GRAY ||circle.getFill() == Color.CADETBLUE))){
                        for (int t=0;t< rec.length;t++) {
@@ -251,8 +249,6 @@ public class HelloApplication extends Application {
                            }
                        }
                         controller.HilightPosMove(controller.selectedChip, arr, map,rec);
-
-
                     }
                 });
             }
@@ -260,7 +256,6 @@ public class HelloApplication extends Application {
             //   for (int i = 0; i < 24; i++) { // обработчик нажатия на фишку
             //     int finalI = i;
             //   CirArr[i].setOnMouseClicked((MouseEvent event) -> {
-            //     System.out.println("mouseClicked");
             //   controller.HilightPosMove(chips[finalI], chips, arr, map);
             //});
         }

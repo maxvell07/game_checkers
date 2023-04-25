@@ -13,11 +13,12 @@ public class Chip {
     public Circle circle;
     boolean queen =false;
 
-    public Chip(int X, int Y, Circle circle, boolean queen) {
-        hasChip = false;
+    public Chip(int X, int Y, Circle circle,boolean hasChip, boolean queen) {
+        this.hasChip = hasChip;
         this.X = X;
         this.Y = Y;
         this.circle = circle;
+        this.queen=queen;
     }
 
     public void placeChip() {
