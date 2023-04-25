@@ -1297,10 +1297,23 @@ public class HelloController {
         }else if (findMoves(rects, color)) {
             System.out.println("findsimplemoves");
         } else{
+            if (turn==Turn.WHITE){
+                for (int i=0;i< rects.length;i++){
+                if (rects[i].hasChip() && rects[i].chip.queen && rects[i].chip.circle.getFill()==Color.WHEAT){
+                    hasowerchip=true;
+                }}
+            } else if (turn==Turn.BLACK){
+                for (int i=0;i< rects.length;i++){
+                    if (rects[i].hasChip() && rects[i].chip.queen && rects[i].chip.circle.getFill()==Color.CADETBLUE){
+                        hasowerchip=true;
+                    }
+                }
+            }
+            if (!hasowerchip){
             System.out.println("end"+ findMoves(rects, color));
             InfoAlert.showAlertWin();
         System.exit(1);
-        }
+        }}
     }
 
     public boolean canCheckerEat(Rect[] rec, Rect rect) {
