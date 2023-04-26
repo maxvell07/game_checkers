@@ -21,12 +21,12 @@ public class HelloController {
 
         }
         checknewqueens(rec);
-        for (int j=0;j<rect.length;j++){
+       /* for (int j=0;j<rect.length;j++){
             if (rec[j].hasChip()){
             if ((rec[j].chip.circle.getFill()== Color.WHEAT || rec[j].chip.circle.getFill()== Color.CADETBLUE)){
                 rec[j].chip.queen=true;
             }
-        }}
+        }}*/
     }
 
     public Chip selectedChip;
@@ -39,13 +39,6 @@ public class HelloController {
     public void HilightPosMove(Chip cir, Rectangle[] rects, Map<Cord, Rectangle> map, Rect[] rect) {
         initBoard(rects, rect);
         canEatQueen=false;
-        for (int i = 0; i < rect.length; i++) {//1
-            if (rect[i].hasChip()){
-                rect[i].rectangle.setFill(Color.RED);
-                if (rect[i].chip.circle.getFill()==Color.CADETBLUE){
-                    rect[i].chip.queen=true;
-                }
-            }}
         int X = cir.getX();
         int Y = cir.getY();
         int Xld = 0;
@@ -1079,9 +1072,6 @@ public class HelloController {
         boolean eat = false;
         if (color.equals("WHITE")) {
             for (int i = 0; i < rec.length; i++) {//1
-                if (rec[i].hasChip()){
-                    rec[i].rectangle.setFill(Color.RED);
-                }
                 if (rec[i].hasChip() && rec[i].chip.circle.getFill() == Color.WHITE) {
                     if ((rec[i].chip.getX() + 110 <= 460) && (rec[i].chip.getY() + 110 <= 460)) {//проверка съедения вниз вправо для белых
                         for (int j = 0; j < rec.length; j++) {//2
@@ -1146,9 +1136,7 @@ public class HelloController {
             }
         } else {//для черных BLACK
             for (int i = 0; i < rec.length; i++) {
-                if (rec[i].hasChip()){
-                    rec[i].rectangle.setFill(Color.RED);
-                }//1
+                //1
                 if (rec[i].hasChip() && rec[i].chip.circle.getFill() == Color.GRAY) {
                     if ((rec[i].chip.getX() + 110 <= 460) && (rec[i].chip.getY() + 110 <= 460)) {
                         for (int j = 0; j < rec.length; j++) {//2  //проверка съедения вниз вправо для черных

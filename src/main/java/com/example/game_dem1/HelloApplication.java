@@ -3,6 +3,7 @@ package com.example.game_dem1;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -44,15 +45,15 @@ public class HelloApplication extends Application {
         Circle circ7 = new Circle(295, 130, 25, Color.GRAY);
         Circle circ8 = new Circle(405, 130, 25, Color.GRAY);
 
-        Circle circ9 = new Circle(130, 185, 25, Color.CADETBLUE);
+        Circle circ9 = new Circle(130, 185, 25, Color.GRAY);
         Circle circ10 = new Circle(240, 185, 25, Color.GRAY);
         Circle circ11 = new Circle(350, 185, 25, Color.GRAY);
-        Circle circ12 = new Circle(460, 185, 25, Color.CADETBLUE);
+        Circle circ12 = new Circle(460, 185, 25, Color.GRAY);
 //белые
-        Circle circ13 = new Circle(75, 350, 25, Color.WHEAT);
+        Circle circ13 = new Circle(75, 350, 25, Color.WHITE);
         Circle circ14 = new Circle(185, 350, 25, Color.WHITE);
         Circle circ15 = new Circle(295, 350, 25, Color.WHITE);
-        Circle circ16 = new Circle(405, 350, 25, Color.WHEAT);
+        Circle circ16 = new Circle(405, 350, 25, Color.WHITE);
 
         Circle circ17 = new Circle(130, 405, 25, Color.WHITE);
         Circle circ18 = new Circle(240, 405, 25, Color.WHITE);
@@ -223,6 +224,10 @@ public class HelloApplication extends Application {
                 rec[i].rectangle.setFill(Color.RED);
             }
         }*/
+
+        var b = new Button("XXXXXXX");
+        b.setOnMouseClicked(value -> System.out.println("Clicked: " + value));
+        root.getChildren().add(b);
 
         Scene scene = new Scene(root, 500, 500, Color.DARKGOLDENROD);
         stage.setTitle("Chip");
